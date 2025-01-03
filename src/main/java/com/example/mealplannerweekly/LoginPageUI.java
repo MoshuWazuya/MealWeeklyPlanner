@@ -19,6 +19,7 @@ public class LoginPageUI extends Application  {
     @Override
     public void start(Stage stage)  {
 
+
         Label titleLabel = new Label("Sign Up");
         titleLabel.setFont(new Font("Arial", 20));
         titleLabel.setTextFill(Color.BLACK);
