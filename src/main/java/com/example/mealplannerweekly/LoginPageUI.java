@@ -1,6 +1,7 @@
 package com.example.mealplannerweekly;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,19 +59,7 @@ public class LoginPageUI extends Application  {
         });
 
 
-        registerButton.setOnAction(e -> {
-            String name = nameField.getText(); // Get the entered name
-            String password = passwordField.getText(); // Get the entered password
-
-            // Register the user in the text file
-            if (registerUser(name, password)) {
-                messagelabel.setText("User registered successfully!"); // Display success message
-                messagelabel.setTextFill(Color.GREEN); // Set message color to green
-            } else {
-                messagelabel.setText("Registration failed. User might already exist."); // Display error message
-                messagelabel.setTextFill(Color.RED); // Set message color to red
-            }
-        });
+        registerButton.setOnAction(e -> openRegisterStage());
 
 
         Stage primaryStage = new Stage();
@@ -86,6 +75,7 @@ public class LoginPageUI extends Application  {
 
 
 
+
         Scene scene = new Scene(layout,300,300);
         primaryStage.setTitle("Simple Weekly Meal Planner");
         primaryStage.show();
@@ -94,8 +84,64 @@ public class LoginPageUI extends Application  {
 
     }
 
+    private void openRegisterStage(){
+        Stage registeringStage = new Stage();
+        registeringStage.setTitle("Register New User");
+
+        Label registerTitleLabel = new Label("Register");
+        registerTitleLabel.setFont(new Font("Arial", 20));
+        registerTitleLabel.setTextFill(Color.BLACK);
+
+        Label nameLabel = new Label("Name");
+        Label passwordLabel = new Label("Password");
+        Label messageLabel = new Label("");
+
+        // Input fields
+        TextField nameField = new TextField();
+        nameField.setPromptText("Enter your name");
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Enter your password");
+
+        // Register Button
+        Button registerButton = new Button("Register");
+        registerButton.setStyle("-fx-background-color: #00bfff; -fx-text-fill: white;");
+
+
+        registerButton.setOnAction(e -> {
+            String name = nameField.getText(); // Get the entered name
+            String password = passwordField.getText(); // Get the entered password
+
+            // Register the user in the text file
+            if (registerUser(name, password)) {
+                messageLabel.setText("User registered successfully!"); // Display success message
+                messageLabel.setTextFill(Color.GREEN); // Set message color to green
+                System.out.println("User registration is successful"); // Print to console
+            } else {
+                messageLabel.setText("Registration failed. User might already exist."); // Display error message
+                messageLabel.setTextFill(Color.RED); // Set message color to red
+            }
+        });
+
+
+
+        VBox registerLayout = new VBox(10);
+        registerLayout.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 20;");
+        registerLayout.getChildren().addAll(registerTitleLabel,nameLabel,nameField,passwordLabel,passwordField,messageLabel,registerButton);
+        registerLayout.setAlignment(Pos.CENTER);
+
+        Scene registerScene = new Scene(registerLayout,300,300);
+        registeringStage.setScene(registerScene);
+        registeringStage.show();
+
+
+
+
+
+    }
+
     private boolean verifyCredentials(String name ,String password) {
-        File file = new File("User.txt");
+        File file = new File("Users.txt");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
@@ -145,6 +191,7 @@ public class LoginPageUI extends Application  {
 
 
     public static void main(String[] args) {
+
         launch();
     }
 }
