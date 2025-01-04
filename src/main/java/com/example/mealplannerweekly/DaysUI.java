@@ -37,7 +37,7 @@ public class DaysUI {
     ListView<String> brMealView,luMealView,diMealView;
     
     public void days(String days,Stage stage){
-        day.setText(days);
+        day.setText(days);    //receive days from DashboardUI 
         brMealList = FXCollections.observableArrayList(); 
         luMealList = FXCollections.observableArrayList();
         diMealList = FXCollections.observableArrayList();
@@ -47,7 +47,7 @@ public class DaysUI {
         brMealView = new ListView<>(brMealList);
         luMealView = new ListView<>(luMealList);
         diMealView = new ListView<>(diMealList);
-        AddMealUI add = new AddMealUI();
+        AddMealUI add = new AddMealUI();    //creating an object named add from class AddMealUI
 
                                                     
         //layout
