@@ -2,8 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.project_oop;
-
+package com.example.mealplannerweekly;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +22,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author muhdk
+ * @author khalid sem
  */
 public class DaysUI {
     Label brLabel = new Label("Breakfast");
