@@ -105,6 +105,8 @@ public class DaysUI {
         //styling
         titleContainer.setStyle(dayStyle);
         brTotalCal.setStyle(totalStyle);
+        luTotalCal.setStyle(totalStyle);
+        diTotalCal.setStyle(totalStyle);
         brLabel.setStyle(titleStyle);
         luLabel.setStyle(titleStyle);
         diLabel.setStyle(titleStyle);
