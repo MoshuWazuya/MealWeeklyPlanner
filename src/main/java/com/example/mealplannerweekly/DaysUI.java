@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 /**
  *
  * @author khalid sem
+     --> Muhammad Khalid bin Abdul Jabar 2326293
  */
 public class DaysUI {
     Label brLabel = new Label("Breakfast");
