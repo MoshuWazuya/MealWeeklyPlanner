@@ -177,6 +177,7 @@ public class LoginPageUI extends Application  {
     private boolean registerUser(String name, String password) {
         File file = new File("users.txt");
 
+        //Read existed user first
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
