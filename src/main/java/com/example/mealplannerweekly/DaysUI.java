@@ -38,7 +38,7 @@ public class DaysUI {
     ListView<String> brMealView,luMealView,diMealView;
     
     public void days(String days,Stage stage){
-        day.setText(days);    //receive days from DashboardUI 
+        day.setText(days);
         brMealList = FXCollections.observableArrayList(); 
         luMealList = FXCollections.observableArrayList();
         diMealList = FXCollections.observableArrayList();
@@ -48,8 +48,7 @@ public class DaysUI {
         brMealView = new ListView<>(brMealList);
         luMealView = new ListView<>(luMealList);
         diMealView = new ListView<>(diMealList);
-        AddMealUI add = new AddMealUI();    //creating an object named add from class AddMealUI
-
+        AddMealUI add = new AddMealUI();
                                                     
         //layout
         Button brAdd = new Button("Add");   
@@ -58,6 +57,7 @@ public class DaysUI {
         Button brRemove = new Button("Remove");
         Button luRemove = new Button("Remove");
         Button diRemove = new Button("Remove");
+        Button back = new Button("← back");
         VBox brBox = new VBox(5);
         VBox luBox = new VBox(5);
         VBox diBox = new VBox(5);
@@ -70,8 +70,12 @@ public class DaysUI {
         HBox root = new HBox(40); 
         VBox lastroot = new VBox(40);
         HBox titleContainer = new HBox();
+        HBox backContainer = new HBox();
         titleContainer.getChildren().addAll(day);
         titleContainer.setAlignment(Pos.TOP_CENTER);
+        backContainer.getChildren().addAll(back);
+        backContainer.setAlignment(Pos.TOP_LEFT);
+        StackPane sp =  new StackPane(titleContainer,backContainer);
         brBtn.getChildren().addAll(brAdd,brRemove);
         luBtn.getChildren().addAll(luAdd,luRemove);
         diBtn.getChildren().addAll(diAdd,diRemove);
@@ -82,7 +86,7 @@ public class DaysUI {
         lunch.getChildren().addAll(luLabel,luBox);
         dinner.getChildren().addAll(diLabel,diBox);
         root.getChildren().addAll(breakfast,lunch,dinner);
-        lastroot.getChildren().addAll(titleContainer,root);
+        lastroot.getChildren().addAll(sp,root);
         //layout
                                                     
         //setStyle template
@@ -90,20 +94,27 @@ public class DaysUI {
                         "-fx-background-color: #3a7ca5;" +
                         "-fx-text-fill: white;" +
                         "-fx-font-family: 'Courier New';";
+        String backStyle = "-fx-background-color: transparent;" +
+                        "-fx-font-family: 'Courier New';" +
+                        "-fx-font-size: 15;" +
+                        "-fx-font-weight: bold;" + 
+                        "-fx-text-fill: white;";
         String mealStyle = "-fx-background-radius: 20;";
         String boxStyle = "-fx-background-color: skyblue;" + 
                         "-fx-background-radius: 20;" + 
                         "-fx-padding: 7;";
         String titleStyle = "-fx-font-size: 20;" + 
                             "-fx-font-weight: bold;" +
-                            "-fx-font-family: 'Courier New';";
+                            "-fx-font-family: 'Comic Sans MS';" +
+                            "-fx-text-fill: gray;";
         String dayStyle = titleStyle + 
-                            "-fx-background-color: skyblue";
+                            "-fx-background-color: skyblue;";
         String totalStyle = "-fx-font-family: 'Courier New';" +
                             "-fx-font-weight: bold;";
         //setStyle template
         
         //styling
+        back.setStyle(backStyle);
         titleContainer.setStyle(dayStyle);
         brTotalCal.setStyle(totalStyle);
         luTotalCal.setStyle(totalStyle);
@@ -151,6 +162,13 @@ public class DaysUI {
         lastroot.setAlignment(Pos.TOP_CENTER);
         //styling
         
+        //event-handling back
+        back.setOnAction(event -> {
+            MainMenuUI main = new MainMenuUI();
+            main.start(stage);
+        });
+        //event-handling back
+        
         //event-handling add
         brAdd.setOnAction(event -> {
             add.AddMeal(brMealList,"Breakfast",brCalList,brTotalCal);
@@ -189,11 +207,11 @@ public class DaysUI {
             diTotalCal.setText("Total: " + totalCalories + " cal");
         });
         //event-handling remove
+        
         Scene scene = new Scene(lastroot,600,300);
         stage.setScene(scene);
         stage.setTitle("DaysUI");
         stage.show();
-    
     }
-  
 }
+
