@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.example.loginpage.MainMenuUI;
+
 
 import java.io.*;
 
@@ -54,6 +56,13 @@ public class LoginPageUI extends Application  {
             if(verifyCredentials(name,password)){
                 messagelabel.setText("User verified.Welcome!");
                 messagelabel.setTextFill(Color.GREEN);
+
+                //Close the login page after press Continue
+                Stage loginStage = (Stage) continueButton.getScene().getWindow();
+                loginStage.close();
+
+                //Open the MainMenuUI
+                new MainMenuUI().start(stage);
             }else {
                 messagelabel.setText("Invalid credentials. Try again.");
                 messagelabel.setTextFill(Color.RED);
@@ -69,11 +78,12 @@ public class LoginPageUI extends Application  {
 
         //Button Layout
         HBox buttonBox = new HBox(10,registerButton,continueButton);
+        buttonBox.setAlignment(Pos.CENTER);
 
 
         //Main layout for login page
         VBox layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #a9a9a9; -fx-padding: 20;");
+        layout.setStyle("-fx-background-color: #87CEEB; -fx-padding: 20;");
         layout.getChildren().addAll(titleLabel,namelabel,nameField,passwordlabel,passwordField,buttonBox);
 
 
@@ -84,6 +94,7 @@ public class LoginPageUI extends Application  {
         primaryStage.setTitle("Simple Weekly Meal Planner");
         primaryStage.show();
         primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
 
 
     }
@@ -118,15 +129,22 @@ public class LoginPageUI extends Application  {
             String name = nameField.getText();
             String password = passwordField.getText();
 
+            if (name.isEmpty() || password.isEmpty()) {
+                messageLabel.setText("Fields cannot be empty.");
+                messageLabel.setTextFill(Color.RED);
+                return;
+            }
+
             // Register the user in the text file
             //Call method to register the user
-            if (registerUser(name, password)) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("Users.txt", true))) {
+                writer.write(name + "," + password);
+                writer.newLine();
                 messageLabel.setText("User registered successfully!");
                 messageLabel.setTextFill(Color.GREEN);
-                System.out.println("User registration is successful");
-            } else {
-                messageLabel.setText("Registration failed. User might already exist."); // Display error message
-                messageLabel.setTextFill(Color.RED); // Set message color to red
+            } catch (IOException ioException) {
+                messageLabel.setText("Error: Could not register the user. Please try again.");
+                messageLabel.setTextFill(Color.RED);
             }
         });
 
@@ -161,52 +179,16 @@ public class LoginPageUI extends Application  {
                 }
             }
 
-        } catch (IOException e) {
-            //To show error alert if reading it is a fail
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("An error occurred");
-            alert.setContentText("No user matched. Please try again.");
-            alert.showAndWait();
-        }
-
-        return false;
-    }
-
-    //Method to register new user
-    private boolean registerUser(String name, String password) {
-        File file = new File("users.txt");
-
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 2 && parts[0].trim().equals(name)) {
-                    return false; // User already exists
-                }
+        } catch (FileNotFoundException e) {
+            try {
+                new File("Users.txt").createNewFile();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
         } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("An error occurred");
-            alert.setContentText("User already registered. Please try again.");
-            alert.showAndWait();
+            e.printStackTrace();
         }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write(name + "," + password); //Append new suer data
-            writer.newLine();
-            return true; // Registration successful
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("An error occurred");
-            alert.setContentText("Unable to access the user data file. Please try again.");
-            alert.showAndWait();
-        }
-
-        return false; // Registration failed
+        return false;
     }
 
 

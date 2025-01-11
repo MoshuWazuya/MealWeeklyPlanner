@@ -1,4 +1,5 @@
 package org.example.loginpage;
+import com.example.mealplannerweekly.DaysUI;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,6 +48,8 @@ public class MainMenuUI extends Application {
         weekGrid.setPadding(new Insets(20));
         weekGrid.setHgap(20);
         weekGrid.setVgap(20);
+
+        DaysUI days = new DaysUI();
 
 
         // Monday

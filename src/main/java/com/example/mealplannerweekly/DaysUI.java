@@ -4,6 +4,7 @@
  */
 package com.example.mealplannerweekly;
 
+import com.example.mealweeklyplanner.AddMealUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -12,13 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.example.loginpage.MainMenuUI;
 
 /**
  *
@@ -48,7 +46,7 @@ public class DaysUI {
         brMealView = new ListView<>(brMealList);
         luMealView = new ListView<>(luMealList);
         diMealView = new ListView<>(diMealList);
-        AddMealUI add = new AddMealUI();
+        com.example.mealweeklyplanner.AddMealUI add = new AddMealUI();
                                                     
         //layout
         Button brAdd = new Button("Add");   
@@ -164,7 +162,7 @@ public class DaysUI {
         
         //event-handling back
         back.setOnAction(event -> {
-            MainMenuUI main = new MainMenuUI();
+            org.example.loginpage.MainMenuUI main = new MainMenuUI();
             main.start(stage);
         });
         //event-handling back
