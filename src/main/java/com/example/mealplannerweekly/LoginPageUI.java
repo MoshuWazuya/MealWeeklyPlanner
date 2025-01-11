@@ -14,6 +14,12 @@ import org.example.loginpage.MainMenuUI;
 
 import java.io.*;
 
+/**
+ *
+ * @author Wazir
+ * Mohamad Wazir bin Nordin 2215353
+ */
+
 
 public class LoginPageUI extends Application  {
     @Override
