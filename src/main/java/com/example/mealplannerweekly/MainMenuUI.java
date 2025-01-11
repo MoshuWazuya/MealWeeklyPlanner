@@ -61,7 +61,9 @@ public class MainMenuUI extends Application {
 
         Button mondayButton = new Button("View");
         mondayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        mondayButton.setOnAction(event ->{
+            days.days("Monday",primaryStage);
+        });
         mondayBox.getChildren().addAll(mondayLabel, mondayButton);
         weekGrid.add(mondayBox, 0, 0); //position
 
@@ -77,7 +79,9 @@ public class MainMenuUI extends Application {
 
         Button tuesdayButton = new Button("View");
         tuesdayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        tuesdayButton.setOnAction(event ->{
+            days.days("Tuesday",primaryStage);
+        });
         tuesdayBox.getChildren().addAll(tuesdayLabel, tuesdayButton);
         weekGrid.add(tuesdayBox, 2, 0);
 
@@ -93,7 +97,9 @@ public class MainMenuUI extends Application {
 
         Button wednesdayButton = new Button("View");
         wednesdayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        wednesdayButton.setOnAction(event ->{
+            days.days("Wednesday",primaryStage);
+        });
         wednesdayBox.getChildren().addAll(wednesdayLabel, wednesdayButton);
         weekGrid.add(wednesdayBox, 4, 0);
 
@@ -109,7 +115,9 @@ public class MainMenuUI extends Application {
 
         Button thursdayButton = new Button("View");
         thursdayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        thursdayButton.setOnAction(event ->{
+            days.days("Thursday",primaryStage);
+        });
         thursdayBox.getChildren().addAll(thursdayLabel, thursdayButton);
         weekGrid.add(thursdayBox, 6, 0);
 
@@ -127,7 +135,9 @@ public class MainMenuUI extends Application {
 
         Button fridayButton = new Button("View");
         fridayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        fridayButton.setOnAction(event ->{
+            days.days("Friday",primaryStage);
+        });
         fridayBox.getChildren().addAll(fridayLabel, fridayButton);
         weekGrid.add(fridayBox, 1, 1);
 
@@ -143,7 +153,9 @@ public class MainMenuUI extends Application {
 
         Button saturdayButton = new Button("View");
         saturdayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        saturdayButton.setOnAction(event ->{
+            days.days("Saturday",primaryStage);
+        });
         saturdayBox.getChildren().addAll(saturdayLabel, saturdayButton);
         weekGrid.add(saturdayBox, 3, 1);
 
@@ -159,7 +171,9 @@ public class MainMenuUI extends Application {
 
         Button sundayButton = new Button("View");
         sundayButton.setStyle("-fx-background-color: #3c7aa6; -fx-text-fill: white; -fx-font-size: 12px; -fx-background-radius: 5;");
-
+        sundayButton.setOnAction(event ->{
+            days.days("Sunday",primaryStage);
+        });
         sundayBox.getChildren().addAll(sundayLabel, sundayButton);
         weekGrid.add(sundayBox, 5, 1);
 
