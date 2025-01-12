@@ -33,21 +33,19 @@ public class DaysUI {
     Label luTotalCal = new Label();
     Label diTotalCal = new Label();
     Label day = new Label();
-    ObservableList<String> brMealList,luMealList,diMealList;
-    ObservableList<Double> brCalList,luCalList,diCalList;
-    ListView<String> brMealView,luMealView,diMealView;
+    ObservableList<String> brMealList = FXCollections.observableArrayList();
+    ObservableList<String> luMealList = FXCollections.observableArrayList();
+    ObservableList<String> diMealList = FXCollections.observableArrayList();
+    ObservableList<Double> brCalList = FXCollections.observableArrayList();
+    ObservableList<Double> luCalList = FXCollections.observableArrayList();
+    ObservableList<Double> diCalList = FXCollections.observableArrayList();
+    ListView<String> brMealView = new ListView<>(brMealList);
+    ListView<String> luMealView = new ListView<>(luMealList);
+    ListView<String> diMealView = new ListView<>(diMealList);
     
     public void days(String days,Stage stage){
         day.setText(days);
-        brMealList = FXCollections.observableArrayList(); 
-        luMealList = FXCollections.observableArrayList();
-        diMealList = FXCollections.observableArrayList();
-        brCalList = FXCollections.observableArrayList();
-        luCalList = FXCollections.observableArrayList();
-        diCalList = FXCollections.observableArrayList();
-        brMealView = new ListView<>(brMealList);
-        luMealView = new ListView<>(luMealList);
-        diMealView = new ListView<>(diMealList);
+
         com.example.mealplannerweekly.AddMealUI add = new AddMealUI();
                                                     
         //layout
