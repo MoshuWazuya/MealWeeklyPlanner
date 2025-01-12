@@ -1,6 +1,7 @@
 
 package com.example.mealplannerweekly;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.*;
 
 
 /**
@@ -86,5 +88,28 @@ public class AddMealUI {
         
         stage.setScene(scene);
         stage.show();
-    }   
+    }
+    private void saveMealsToFile(ObservableList<String> mealList){
+        try(BufferedWriter writer = new BufferedWriter((new FileWriter("Meals.txt")))){
+            for (String meal : mealList){
+                writer.write(meal);
+                writer.newLine();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static ObservableList<String> loadMealsFromFile(){
+        ObservableList<String> mealList = FXCollections.observableArrayList();
+        try(BufferedReader reader = new BufferedReader(new FileReader("Meals.txt"))){
+            String line;
+            while ((line=reader.readLine()) !=null){
+                mealList.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return mealList;
+    }
 }
