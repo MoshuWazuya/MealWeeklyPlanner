@@ -11,7 +11,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.example.loginpage.MainMenuUI;
 
-
 import java.io.*;
 
 /**
@@ -63,9 +62,8 @@ public class LoginPageUI extends Application  {
                 messagelabel.setText("User verified.Welcome!");
                 messagelabel.setTextFill(Color.GREEN);
 
-                //Close the login page after press Continue
-                Stage loginStage = (Stage) continueButton.getScene().getWindow();
-                loginStage.close();
+                //Hide the primary stage before opening the profile stage
+                stage.hide();
 
                 //Open the MainMenuUI
                 new MainMenuUI().start(stage);
@@ -126,14 +124,15 @@ public class LoginPageUI extends Application  {
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Enter your password");
 
+        //Register Button
 
         Button registerButton = new Button("Register");
         registerButton.setStyle("-fx-background-color: #00bfff; -fx-text-fill: white;");
 
         // Action for Register Button
         registerButton.setOnAction(event -> {
-            String name = nameField.getText();
-            String password = passwordField.getText();
+            String name = nameField.getText(); // Get the entered name
+            String password = passwordField.getText(); // Get the entered password
 
             if (name.isEmpty() || password.isEmpty()) {
                 messageLabel.setText("Fields cannot be empty.");
@@ -142,7 +141,6 @@ public class LoginPageUI extends Application  {
             }
 
             // Register the user in the text file
-            //Call method to register the user
             try (BufferedWriter writer = new BufferedWriter(new FileWriter("Users.txt", true))) {
                 writer.write(name + "," + password);
                 writer.newLine();
