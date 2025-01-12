@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -14,6 +15,8 @@ import javafx.geometry.Insets;
 
 import java.io.File;
 
+// MUHAMMAD FIKRI HAZIQ BIN ZAKI 2328631
+
 public class ProfileUI  {
 
     public static void openProfileStage(String name) {
@@ -22,13 +25,27 @@ public class ProfileUI  {
 
         // Profile title
         Label profileTitleLabel = new Label("User Profile");
-        profileTitleLabel.setFont(new javafx.scene.text.Font("Arial", 20));
+
         profileTitleLabel.setTextFill(javafx.scene.paint.Color.BLACK);
         profileTitleLabel.setAlignment(Pos.CENTER);
 
+        HBox titleContainer = new HBox();
+        titleContainer.setMinHeight(50);
+        titleContainer.getChildren().add(profileTitleLabel);
+        titleContainer.setAlignment(Pos.CENTER);
+
+        String titleStyle = " -fx-font-size: 24px;" +
+                "-fx-font-weight: bold;" +
+                "-fx-text-fill: gray;";
+        String dayStyle = titleStyle +
+                "-fx-background-color: skyblue;";
+
+
+        titleContainer.setStyle(dayStyle);
+
         // User info labels
         Label nameLabel = new Label("Name: " + name );
-        nameLabel.setFont(new javafx.scene.text.Font("Arial", 20));
+        nameLabel.setFont(new javafx.scene.text.Font("Verdana", 18));
 
         Label ageLabel = new Label("Age: ");
         Label emailLabel = new Label("Email: ");
@@ -59,7 +76,7 @@ public class ProfileUI  {
 
 
         // Create the default image
-        Image defaultImage = new Image("file:C:/Users/mfhza/OneDrive/Desktop/project-shawarma/project-shawarma/img/profile.png");
+        Image defaultImage = new Image("am-a-19-year-old-multimedia-artist-student-from-manila--21.png");
         ImageView imageView = new ImageView(defaultImage);
 
         // Set image size
@@ -82,14 +99,14 @@ public class ProfileUI  {
         // StackPane layout for profile image and button
         StackPane root = new StackPane();
         root.getChildren().addAll(imageView, changeImageButton);
-        StackPane.setMargin(changeImageButton, new Insets(170, 0, 20, 0));
-        StackPane.setMargin(imageView, new Insets(5, 0, 20, 0));
-        root.setAlignment(Pos.CENTER);
+        StackPane.setMargin(changeImageButton, new Insets(150, 0, 20, 0));
+        StackPane.setMargin(imageView, new Insets(25, 0, 20, 0));
+        root.setAlignment(Pos.TOP_CENTER);
 
         // Layout container (VBox)
         VBox profileLayout = new VBox(10);
-        profileLayout.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 20;");
-        profileLayout.getChildren().addAll(profileTitleLabel, root, body);
+        profileLayout.setStyle("-fx-background-color: #e0e0e0;");
+        profileLayout.getChildren().addAll(titleContainer, root, body);
         profileLayout.setAlignment(Pos.CENTER);
 
         // Profile scene
