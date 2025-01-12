@@ -57,6 +57,7 @@ public class AddMealUI {
             calorieList.add(brCal);
             double totalCalories = calorieList.stream().mapToDouble(Double::doubleValue).sum();
             totalLabel.setText("Total: " + totalCalories + " cal");
+
         }
         else if(mealType.equals("Lunch")){
             String meal = mealField.getText();
@@ -65,6 +66,7 @@ public class AddMealUI {
             calorieList.add(luCal);
             double totalCalories = calorieList.stream().mapToDouble(Double::doubleValue).sum();
             totalLabel.setText("Total: " + totalCalories + " cal");
+
         }
         else if(mealType.equals("Dinner")){
             String meal = mealField.getText();
@@ -73,6 +75,7 @@ public class AddMealUI {
             calorieList.add(diCal);
             double totalCalories = calorieList.stream().mapToDouble(Double::doubleValue).sum();
             totalLabel.setText("Total: " + totalCalories + " cal");
+
         }      
             mealField.clear();
             calField.clear();
@@ -89,27 +92,5 @@ public class AddMealUI {
         stage.setScene(scene);
         stage.show();
     }
-    private void saveMealsToFile(ObservableList<String> mealList){
-        try(BufferedWriter writer = new BufferedWriter((new FileWriter("Meals.txt")))){
-            for (String meal : mealList){
-                writer.write(meal);
-                writer.newLine();
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
-    public static ObservableList<String> loadMealsFromFile(){
-        ObservableList<String> mealList = FXCollections.observableArrayList();
-        try(BufferedReader reader = new BufferedReader(new FileReader("Meals.txt"))){
-            String line;
-            while ((line=reader.readLine()) !=null){
-                mealList.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return mealList;
-    }
 }

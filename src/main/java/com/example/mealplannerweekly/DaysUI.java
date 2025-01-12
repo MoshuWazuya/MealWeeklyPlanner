@@ -72,7 +72,7 @@ public class DaysUI {
         HBox titleContainer = new HBox();
         HBox backContainer = new HBox();
         titleContainer.getChildren().addAll(day);
-        titleContainer.setAlignment(Pos.TOP_CENTER);
+        titleContainer.setAlignment(Pos.CENTER);
         backContainer.getChildren().addAll(back);
         backContainer.setAlignment(Pos.TOP_LEFT);
         StackPane sp =  new StackPane(titleContainer,backContainer);
