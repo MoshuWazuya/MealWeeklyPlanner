@@ -59,13 +59,16 @@ public class LoginPageUI extends Application  {
             String password = passwordField.getText();
 
             //Call method to verify credentials
-
+            ProfileUI profile = new ProfileUI();
             if(verifyCredentials(name,password)){
                 messagelabel.setText("User verified.Welcome!");
                 messagelabel.setTextFill(Color.GREEN);
 
                 //Hide the primary stage before opening the profile stage
                 stage.hide();
+
+                // Pass the name to the ProfileUI and open the profile stage
+                MainMenuUI.setUserName(name);  // Pass the name to ProfileUI
 
                 //Open the MainMenuUI
                 new com.example.mealplannerweekly.MainMenuUI().start(stage);

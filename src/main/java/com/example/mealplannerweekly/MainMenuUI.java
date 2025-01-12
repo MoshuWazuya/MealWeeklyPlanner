@@ -10,7 +10,20 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+
+/**
+ *
+ * @author Nadsreen
+ * ABANG MOHAMAD NADSREEN BIN ABANG ADRUS 2314113
+ */
+
 public class MainMenuUI extends Application {
+
+
+    private static String userName;
+    public static void setUserName(String name) {
+        userName = name;
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -19,26 +32,29 @@ public class MainMenuUI extends Application {
         BorderPane mainLayout = new BorderPane();
         mainLayout.setStyle("-fx-background-color: WHITE;"); //
 
-        // Create the header
-        HBox header = new HBox();
+
+        // Create the header using a BorderPane
+        BorderPane header = new BorderPane();
         header.setStyle("-fx-background-color: #87CEEB;"); // light blue
         header.setPadding(new Insets(10));
-        header.setAlignment(Pos.CENTER);
 
+        // Center the title label
         Label titleLabel = new Label("Meal Planner");
         titleLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        header.setCenter(titleLabel);
 
-        // Add profile icon
-        Image profileImage = new Image("https://via.placeholder.com/40"); //
-        ImageView profileImageView = new ImageView(profileImage);
-        profileImageView.setFitWidth(40);
-        profileImageView.setFitHeight(40);
+        // Add the profile icon to the right
+        Image profileImage = new Image("am-a-19-year-old-multimedia-artist-student-from-manila--21.png");
+        ImageView profileView = new ImageView(profileImage);
+        profileView.setFitWidth(30);
+        profileView.setFitHeight(30);
 
-        HBox headerContent = new HBox(titleLabel, profileImageView);
-        headerContent.setAlignment(Pos.CENTER);
-        headerContent.setSpacing(20);
-        header.getChildren().add(headerContent);
-        BorderPane.setAlignment(header, Pos.TOP_CENTER);
+
+
+        // Wrap the profile image in an HBox for alignment and spacing
+        HBox profileContainer = new HBox(profileView);
+        profileContainer.setAlignment(Pos.CENTER_RIGHT);
+        header.setRight(profileContainer);
 
         // Create the grid for the week
         GridPane weekGrid = new GridPane();
@@ -49,7 +65,14 @@ public class MainMenuUI extends Application {
         weekGrid.setVgap(20);
 
         DaysUI days = new DaysUI();
-
+// Profile image icon click handler
+        profileView.setOnMouseClicked(event -> {
+            if (userName != null) {
+                ProfileUI.openProfileStage(userName);  // Open ProfileUI with the stored name
+            } else {
+                System.out.println("User name is not set.");
+            }
+        });
 
         // Monday
         VBox mondayBox = new VBox();

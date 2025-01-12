@@ -27,7 +27,7 @@ public class ProfileUI  {
         profileTitleLabel.setAlignment(Pos.CENTER);
 
         // User info labels
-        Label nameLabel = new Label("Name: " + name);
+        Label nameLabel = new Label("Name: " + name );
         nameLabel.setFont(new javafx.scene.text.Font("Arial", 20));
 
         Label ageLabel = new Label("Age: ");
