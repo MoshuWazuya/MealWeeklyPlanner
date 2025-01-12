@@ -29,7 +29,7 @@ public class LoginPageUI extends Application  {
 
 
         //UI for main page
-        Label titleLabel = new Label("Sign Up");
+        Label titleLabel = new Label("Login");
         titleLabel.setFont(new Font("Arial", 20));
         titleLabel.setTextFill(Color.BLACK);
 
@@ -49,7 +49,7 @@ public class LoginPageUI extends Application  {
         Button continueButton = new Button("Continue");
         continueButton.setStyle("-fx-background-color: #00bfff; -fx-text-fill: white;");
 
-        Button registerButton = new Button("Register");
+        Button registerButton = new Button("Sign Up");
         registerButton.setStyle("-fx-background-color: #00bfff; -fx-text-fill: white;");
 
         //Action
