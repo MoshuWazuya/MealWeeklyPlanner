@@ -1,5 +1,4 @@
-package org.example.loginpage;
-import com.example.mealplannerweekly.DaysUI;
+package com.example.mealplannerweekly;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

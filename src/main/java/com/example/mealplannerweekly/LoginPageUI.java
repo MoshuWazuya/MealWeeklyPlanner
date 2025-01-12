@@ -9,7 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import org.example.loginpage.MainMenuUI;
+
+
+
 
 import java.io.*;
 
@@ -66,7 +68,7 @@ public class LoginPageUI extends Application  {
                 stage.hide();
 
                 //Open the MainMenuUI
-                new MainMenuUI().start(stage);
+                new com.example.mealplannerweekly.MainMenuUI().start(stage);
             }else {
                 messagelabel.setText("Invalid credentials. Try again.");
                 messagelabel.setTextFill(Color.RED);
