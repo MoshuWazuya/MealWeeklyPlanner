@@ -160,9 +160,9 @@ public class LoginPageUI extends Application  {
 
 
         VBox registerLayout = new VBox(10);
-        registerLayout.setStyle("-fx-background-color: #f0f0f0; -fx-padding: 20;");
+        registerLayout.setStyle("-fx-background-color: #87CEEB; -fx-padding: 20;");
         registerLayout.getChildren().addAll(registerTitleLabel,nameLabel,nameField,passwordLabel,passwordField,messageLabel,registerButton);
-        registerLayout.setAlignment(Pos.CENTER);
+
 
         Scene registerScene = new Scene(registerLayout,300,300);
         registeringStage.setScene(registerScene);
