@@ -27,7 +27,6 @@ public class ProfileUI  {
 
         // Profile title
         Label profileTitleLabel = new Label("User Profile");
-
         profileTitleLabel.setTextFill(javafx.scene.paint.Color.BLACK);
         profileTitleLabel.setAlignment(Pos.CENTER);
 
@@ -76,7 +75,7 @@ public class ProfileUI  {
         // VBox for user profile data
         VBox body = new VBox(10);  // The 10 here is the spacing between the elements
         body.setAlignment(Pos.CENTER);  // Center the contents of the VBox
-        
+
 
         // Add the labels and button to the VBox
         body.getChildren().addAll(nameLabel, ageLabel, emailLabel, phoneLabel, editButton);
@@ -129,22 +128,22 @@ public class ProfileUI  {
         Stage editStage = new Stage();
         editStage.setTitle("Edit Profile");
 
-        // Form fields for editing profile
+// Form fields for editing profile
         Label nameLabelEdit = new Label("Name:");
-        TextField nameField = new TextField(nameLabel.getText().substring(6)); // Get current name from label
+        TextField nameField = new TextField(nameLabel.getText().substring(6));
 
         Label ageLabelEdit = new Label("Age:");
         Spinner<Integer> ageSpinner = new Spinner<>(0, 120, age);
 
         Label emailLabelEdit = new Label("Email:");
-        TextField emailField = new TextField(emailLabel.getText().substring(7)); // Get current email from label
+        TextField emailField = new TextField(emailLabel.getText().substring(7));
 
         Label phoneLabelEdit = new Label("Phone Number:");
-        TextField phoneField = new TextField(phoneLabel.getText().substring(8)); // Get current phone number from label
+        TextField phoneField = new TextField(phoneLabel.getText().substring(8));
 
         Button saveButton = new Button("Save");
 
-        // GridPane layout for editing
+// GridPane layout for editing
         GridPane grid = new GridPane();
         grid.setVgap(10);
         grid.setHgap(10);
@@ -159,15 +158,40 @@ public class ProfileUI  {
         grid.add(saveButton, 1, 4);
         grid.setAlignment(Pos.CENTER);
 
-        // Save button action
-        saveButton.setOnAction(e -> {
-            // Capture the new values
-            String updatedName = nameField.getText();
-            int updatedAge = ageSpinner.getValue();
-            String updatedEmail = emailField.getText();
-            String updatedPhone = phoneField.getText();
+// Alert for validation messages
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Validation Error");
+        alert.setHeaderText(null);
 
-            // Update the profile labels in the original stage
+// Save button action with validation
+        saveButton.setOnAction(e -> {
+            String updatedName = nameField.getText().trim();
+            int updatedAge = ageSpinner.getValue();
+            String updatedEmail = emailField.getText().trim();
+            String updatedPhone = phoneField.getText().trim();
+
+            // Validate Name
+            if (updatedName.isEmpty()) {
+                alert.setContentText("Name cannot be empty.");
+                alert.showAndWait();
+                return;
+            }
+
+            // Validate Email
+            if (!updatedEmail.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+                alert.setContentText("Please enter a valid email address.");
+                alert.showAndWait();
+                return;
+            }
+
+            // Validate Phone Number
+            if (!updatedPhone.matches("\\d{7,15}")) {
+                alert.setContentText("Phone number must be 7 to 15 digits long.");
+                alert.showAndWait();
+                return;
+            }
+
+            // Update profile labels
             nameLabel.setText("Name: " + updatedName);
             ageLabel.setText("Age: " + updatedAge);
             emailLabel.setText("Email: " + updatedEmail);
@@ -176,6 +200,8 @@ public class ProfileUI  {
             // Close the edit stage
             editStage.close();
         });
+
+
 
         // Set the scene and show the edit stage
         Scene editScene = new Scene(grid, 400, 300);
