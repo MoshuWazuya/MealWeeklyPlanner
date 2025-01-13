@@ -43,8 +43,7 @@ public class DaysUI {
     
     public void days(String days,Stage stage){
         day.setText(days);
-
-        com.example.mealplannerweekly.AddMealUI add = new AddMealUI();
+        AddMealUI add = new AddMealUI();
                                                     
         //layout
         Button brAdd = new Button("Add");   
@@ -179,28 +178,50 @@ public class DaysUI {
         
         //event-handling remove
         brRemove.setOnAction(event -> {
-            String selected = brMealView.getSelectionModel().getSelectedItem();
-            int index = brMealList.indexOf(selected);
-            brMealList.remove(index);
-            brCalList.remove(index);
-            double totalCalories = brCalList.stream().mapToDouble(Double::doubleValue).sum();
-            brTotalCal.setText("Total: " + totalCalories + " cal");
+            try{
+                String selected = brMealView.getSelectionModel().getSelectedItem();
+                int index = brMealList.indexOf(selected);
+                if (selected==null)
+                    throw new IllegalStateException("No meal selected");
+                brMealList.remove(index);
+                brCalList.remove(index);
+                double totalCalories = brCalList.stream().mapToDouble(Double::doubleValue).sum();
+                brTotalCal.setText("Total: " + totalCalories + " cal");
+            }
+            catch(IllegalStateException e){
+                System.out.println("No meal selected");
+            }
+
         });
         luRemove.setOnAction(event -> {
-            String selected = luMealView.getSelectionModel().getSelectedItem();
-            int index = luMealList.indexOf(selected);
-            luMealList.remove(index);
-            luCalList.remove(index);
-            double totalCalories = luCalList.stream().mapToDouble(Double::doubleValue).sum();
-            luTotalCal.setText("Total: " + totalCalories + " cal");
+            try{
+                String selected = luMealView.getSelectionModel().getSelectedItem();
+                int index = luMealList.indexOf(selected);
+                if (selected==null)
+                    throw new IllegalStateException("No meal selected");
+                luMealList.remove(index);
+                luCalList.remove(index);
+                double totalCalories = luCalList.stream().mapToDouble(Double::doubleValue).sum();
+                luTotalCal.setText("Total: " + totalCalories + " cal");
+            }
+            catch(IllegalStateException e){
+                System.out.println("No meal selected");
+            }
         });
         diRemove.setOnAction(event -> {
-            String selected = diMealView.getSelectionModel().getSelectedItem();
-            int index = diMealList.indexOf(selected);
-            diMealList.remove(index);
-            diCalList.remove(index);
-            double totalCalories = diCalList.stream().mapToDouble(Double::doubleValue).sum();
-            diTotalCal.setText("Total: " + totalCalories + " cal");
+            try{
+                String selected = diMealView.getSelectionModel().getSelectedItem();
+                int index = diMealList.indexOf(selected);
+                if (selected==null)
+                    throw new IllegalStateException("No meal selected");
+                diMealList.remove(index);
+                diCalList.remove(index);
+                double totalCalories = diCalList.stream().mapToDouble(Double::doubleValue).sum();
+                diTotalCal.setText("Total: " + totalCalories + " cal");
+            }
+            catch(IllegalStateException e){
+                System.out.println("No meal selected");
+            }
         });
         //event-handling remove
         
