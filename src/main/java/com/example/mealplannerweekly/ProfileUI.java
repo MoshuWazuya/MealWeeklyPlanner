@@ -12,6 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.io.File;
 
@@ -40,13 +42,10 @@ public class ProfileUI  {
         String dayStyle = titleStyle +
                 "-fx-background-color: skyblue;";
 
-
         titleContainer.setStyle(dayStyle);
 
         // User info labels
         Label nameLabel = new Label("Name: " + name );
-        nameLabel.setFont(new javafx.scene.text.Font("Verdana", 18));
-
         Label ageLabel = new Label("Age: ");
         Label emailLabel = new Label("Email: ");
         Label phoneLabel = new Label("Phone: ");
@@ -61,8 +60,15 @@ public class ProfileUI  {
         emailLabel.setText("Email: " + currentEmail);
         phoneLabel.setText("Phone: " + currentPhone);
 
+        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+        ageLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+        emailLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+        phoneLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+
         // Create a button to open the edit profile page
         Button editButton = new Button("Edit Profile");
+        editButton.setPrefSize(80, 10);  // Set button size
+
 
         // Set action on the edit button
         editButton.setOnAction(e -> openEditStage(profileStage, nameLabel, ageLabel, emailLabel, phoneLabel, currentAge, currentEmail, currentPhone));
@@ -70,6 +76,7 @@ public class ProfileUI  {
         // VBox for user profile data
         VBox body = new VBox(10);  // The 10 here is the spacing between the elements
         body.setAlignment(Pos.CENTER);  // Center the contents of the VBox
+        
 
         // Add the labels and button to the VBox
         body.getChildren().addAll(nameLabel, ageLabel, emailLabel, phoneLabel, editButton);
@@ -80,15 +87,18 @@ public class ProfileUI  {
         ImageView imageView = new ImageView(defaultImage);
 
         // Set image size
-        imageView.setFitWidth(150);
-        imageView.setFitHeight(100);
+        imageView.setFitWidth(250);
+        imageView.setFitHeight(120);
         imageView.setPreserveRatio(true);
 
         // Button to change image
         Button changeImageButton = new Button("Change Image");
+        editButton.setPrefSize(80, 10);  // Set button size
+
         changeImageButton.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", ".jpg", ".png", "*.gif"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.gif"));
+
             File selectedFile = fileChooser.showOpenDialog(profileStage);
             if (selectedFile != null) {
                 Image newImage = new Image(selectedFile.toURI().toString());
